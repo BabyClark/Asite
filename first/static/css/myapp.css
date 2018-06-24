@@ -1,0 +1,79 @@
+.titilebg{
+    background-color: #2e3032;
+    height: 100%;
+    width: auto;
+    text-align: center;
+    padding: 150px ;
+}
+.titile{
+    font-size: 60px;
+    color: #f8ffff;
+}
+a:link,a:hover,a:visited{
+    color: #f8ffff;
+}
+#userform{
+    margin-top: 5%;
+    margin-left:40%;
+    margin-right:40%;
+}
+.myheader{
+    text-align: center;
+    font-size: 40px;
+    padding-top: 60px;
+}
+#userformdiv{
+
+}
+.userbg{
+    background-color: #2e3032;
+    color: #f8ffff;
+}
+#userform > p> label{
+    font-size: 25px;
+}
+#userform > p{
+    height: 75px;
+}
+#userform > ul > li{
+    color: #b58105;
+    font-size: 20px;
+}
+
+.siginup{
+    margin-top: 20px;
+    padding-left: 40%;
+}
+.bluebottom{
+    background-color: #2185D0;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-image: none;
+}
+.hugeprimarybutton{
+    font-size: 1.42857143rem;
+    background-color: #1678c2;
+  color: #FFFFFF;
+  text-shadow: none;
+}
+.indexbg{
+     background-color: #2e3032;
+    height: 100%;
+    width: auto;
+}
+.maindiv{
+    margin-left: 240px;
+    width: 60%;
+    float: left;
+    margin-top: 50px;
+    color: #f8ffff;
+    font-size: 20px;
+    word-wrap:break-word;
+    word-break:break-all;
+}
+.myindexheader{
+    height: 70px;
+    padding-top: 0px;
+    text-align: center;
+    font-size: 60px;
+}

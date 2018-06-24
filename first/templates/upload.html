@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/index3/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/static/index3/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title></title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="/static/css/animate.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="/static/index3/css/paper-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/static/index3/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="/static/index3/css/themify-icons.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Coding changes the world
+                </a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="{% url 'myweb:home' %}">
+                        <i class="ti-view-list-alt"></i>
+                        <p>资源 List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-panel"></i>
+                        <p>需求广场</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-stats-up"></i>
+                        <p>贡献天梯榜</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#">
+                        <i class="ti-text"></i>
+                        <p>上传资料</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-pencil-alt2"></i>
+                        <p>我还没想好是个什么板块</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-map"></i>
+                        <p>just advertisements</p>
+                    </a>
+                </li>
+                <li >
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'myweb:user' %}">
+                        {% else %}
+                    <a href="{% url 'myweb:login' %}">
+                         {% endif %}
+                        <i class="ti-user"></i>
+                        <p>个人中心</p>
+                    </a>
+                </li>
+                <li >
+                    <a href="{% url 'myweb:contact' %}">
+                        <i class="ti-bell"></i>
+                        <p>联系站长</p>
+                    </a>
+                </li>
+				<li class="active-pro">
+                    <a href="#">
+                        <i class="ti-export"></i>
+                        <p>分享给朋友</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">User</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="http://www.zjzhhb.com/" >
+                                <i class="ti-panel"></i>
+								<p>Home</p>
+                            </a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+						<li>
+                            <a href="#">
+								<i class="ti-user"></i>
+                                <p>{{request.user}}</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'myweb:logout' %}">
+								<i class="ti-close"></i>
+                                <p>logout</p>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="{% url 'myweb:login' %}">
+								<i class="ti-settings"></i>
+								<p>login or sign up</p>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+       <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">上传文件</h4>
+                            </div>
+                            <div class="content">
+                                {% if status %}
+                                <div class="alert alert-success">
+                                    <button type="button" aria-hidden="true" class="close"></button>
+                                    <span><b> Success - </b> 您的文件已经上传成功</span>
+                                </div>
+                                {% endif %}
+                                {% if error %}
+                                <div class="alert alert-warning">
+                                    <button type="button" aria-hidden="true" class="close"></button>
+                                    <span><b> Warning - </b> {{error}}</span>
+                                </div>
+                                {% endif %}
+                                <form method="post" action="{% url 'myweb:upload' %}" enctype="multipart/form-data">
+                                    <div class="row">
+                                        {% csrf_token %}
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="id_name">请输入文件名称</label>
+                                                <input type="text" class="form-control border-input" id="id_name" name="name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="id_subject">请输入文件介绍</label>
+                                                <!--<textarea rows="5" id="id_content" class="form-control border-input" name="content"></textarea>-->
+                                                <textarea type="text" rows="5" class="form-control border-input" id="id_subject" name="subject"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                            <div class="form-group">
+                                                <!--<label for="id_file">请选择文件</label>-->
+                                                <input type="file" class="form-control border-input" id="id_file" name="file">
+                                            </div>
+                                        </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">提交</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Creative Team
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+				<div class="copyright pull-right">
+                    Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="#">ZPY</a>
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+</div>
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="/static/index3/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="/static/index3/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="/static/index3/js/bootstrap-checkbox-radio.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="/static/index3/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="/static/index3/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <!-- -<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>- -->
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="/static/index3/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+	<script src="/static/index3/js/demo.js"></script>
+
+</html>
